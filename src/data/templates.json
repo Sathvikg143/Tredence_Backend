@@ -1,0 +1,159 @@
+[
+  {
+    "id": "onboarding",
+    "name": "Employee Onboarding",
+    "description": "Standard new employee onboarding workflow",
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "position": { "x": 250, "y": 0 },
+        "data": { "title": "New Employee Onboarding", "metadata": { "department": "", "startDate": "" } }
+      },
+      {
+        "id": "task-1",
+        "type": "task",
+        "position": { "x": 250, "y": 150 },
+        "data": { "title": "Collect Documents", "description": "Gather all required onboarding documents from the new hire", "assignee": "HR Coordinator", "dueDate": "", "customFields": { "documentList": "ID Proof, Address Proof, Education Certificates" } }
+      },
+      {
+        "id": "automated-1",
+        "type": "automated",
+        "position": { "x": 250, "y": 300 },
+        "data": { "title": "Run Background Check", "actionId": "run_background_check", "actionParams": { "candidateId": "", "checkLevel": "standard" } }
+      },
+      {
+        "id": "approval-1",
+        "type": "approval",
+        "position": { "x": 250, "y": 450 },
+        "data": { "title": "Manager Approval", "approverRole": "Manager", "autoApproveThreshold": 3 }
+      },
+      {
+        "id": "automated-2",
+        "type": "automated",
+        "position": { "x": 250, "y": 600 },
+        "data": { "title": "Provision Accounts", "actionId": "provision_accounts", "actionParams": { "employeeId": "", "systems": "email,slack,jira", "role": "" } }
+      },
+      {
+        "id": "automated-3",
+        "type": "automated",
+        "position": { "x": 250, "y": 750 },
+        "data": { "title": "Send Welcome Email", "actionId": "send_email", "actionParams": { "to": "", "subject": "Welcome to the team!", "body": "" } }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "position": { "x": 250, "y": 900 },
+        "data": { "endMessage": "Onboarding Complete!", "showSummary": true }
+      }
+    ],
+    "edges": [
+      { "id": "e-start1-task1", "source": "start-1", "target": "task-1" },
+      { "id": "e-task1-auto1", "source": "task-1", "target": "automated-1" },
+      { "id": "e-auto1-approval1", "source": "automated-1", "target": "approval-1" },
+      { "id": "e-approval1-auto2", "source": "approval-1", "target": "automated-2" },
+      { "id": "e-auto2-auto3", "source": "automated-2", "target": "automated-3" },
+      { "id": "e-auto3-end1", "source": "automated-3", "target": "end-1" }
+    ]
+  },
+  {
+    "id": "leave-approval",
+    "name": "Leave Approval",
+    "description": "Employee leave request and approval workflow",
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "position": { "x": 250, "y": 0 },
+        "data": { "title": "Leave Request Submitted", "metadata": { "leaveType": "", "employeeId": "" } }
+      },
+      {
+        "id": "task-1",
+        "type": "task",
+        "position": { "x": 250, "y": 150 },
+        "data": { "title": "Review Leave Details", "description": "Verify leave balance and team coverage", "assignee": "HR Representative", "dueDate": "", "customFields": {} }
+      },
+      {
+        "id": "approval-1",
+        "type": "approval",
+        "position": { "x": 250, "y": 300 },
+        "data": { "title": "Manager Approval", "approverRole": "Manager", "autoApproveThreshold": 1 }
+      },
+      {
+        "id": "automated-1",
+        "type": "automated",
+        "position": { "x": 250, "y": 450 },
+        "data": { "title": "Update Leave Records", "actionId": "update_hris", "actionParams": { "employeeId": "", "field": "leaveBalance", "value": "" } }
+      },
+      {
+        "id": "automated-2",
+        "type": "automated",
+        "position": { "x": 250, "y": 600 },
+        "data": { "title": "Notify Team", "actionId": "send_slack", "actionParams": { "channel": "#team-updates", "message": "" } }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "position": { "x": 250, "y": 750 },
+        "data": { "endMessage": "Leave approved and processed", "showSummary": true }
+      }
+    ],
+    "edges": [
+      { "id": "e-start1-task1", "source": "start-1", "target": "task-1" },
+      { "id": "e-task1-approval1", "source": "task-1", "target": "approval-1" },
+      { "id": "e-approval1-auto1", "source": "approval-1", "target": "automated-1" },
+      { "id": "e-auto1-auto2", "source": "automated-1", "target": "automated-2" },
+      { "id": "e-auto2-end1", "source": "automated-2", "target": "end-1" }
+    ]
+  },
+  {
+    "id": "document-verification",
+    "name": "Document Verification",
+    "description": "Verify and process employee documents",
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "position": { "x": 250, "y": 0 },
+        "data": { "title": "Documents Received", "metadata": { "documentType": "", "submittedBy": "" } }
+      },
+      {
+        "id": "automated-1",
+        "type": "automated",
+        "position": { "x": 250, "y": 150 },
+        "data": { "title": "Generate Verification Report", "actionId": "generate_doc", "actionParams": { "template": "verification_report", "recipient": "", "format": "pdf" } }
+      },
+      {
+        "id": "task-1",
+        "type": "task",
+        "position": { "x": 250, "y": 300 },
+        "data": { "title": "Manual Review", "description": "Review documents for authenticity and completeness", "assignee": "Document Verifier", "dueDate": "", "customFields": { "verificationChecklist": "Signature, Date, Seal" } }
+      },
+      {
+        "id": "approval-1",
+        "type": "approval",
+        "position": { "x": 250, "y": 450 },
+        "data": { "title": "HRBP Sign-off", "approverRole": "HRBP", "autoApproveThreshold": 5 }
+      },
+      {
+        "id": "automated-2",
+        "type": "automated",
+        "position": { "x": 250, "y": 600 },
+        "data": { "title": "Send Confirmation Email", "actionId": "send_email", "actionParams": { "to": "", "subject": "Documents Verified", "body": "" } }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "position": { "x": 250, "y": 750 },
+        "data": { "endMessage": "Document verification complete", "showSummary": true }
+      }
+    ],
+    "edges": [
+      { "id": "e-start1-auto1", "source": "start-1", "target": "automated-1" },
+      { "id": "e-auto1-task1", "source": "automated-1", "target": "task-1" },
+      { "id": "e-task1-approval1", "source": "task-1", "target": "approval-1" },
+      { "id": "e-approval1-auto2", "source": "approval-1", "target": "automated-2" },
+      { "id": "e-auto2-end1", "source": "automated-2", "target": "end-1" }
+    ]
+  }
+]

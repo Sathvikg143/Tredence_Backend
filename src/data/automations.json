@@ -1,0 +1,58 @@
+[
+  {
+    "id": "send_email",
+    "label": "Send Email",
+    "description": "Send an automated email notification",
+    "icon": "mail",
+    "params": ["to", "subject", "body"]
+  },
+  {
+    "id": "generate_doc",
+    "label": "Generate Document",
+    "description": "Generate a document from a template",
+    "icon": "file-text",
+    "params": ["template", "recipient", "format"]
+  },
+  {
+    "id": "send_slack",
+    "label": "Send Slack Message",
+    "description": "Post a message to a Slack channel",
+    "icon": "message-square",
+    "params": ["channel", "message"]
+  },
+  {
+    "id": "create_ticket",
+    "label": "Create JIRA Ticket",
+    "description": "Create a new ticket in JIRA",
+    "icon": "ticket",
+    "params": ["project", "summary", "priority", "assignee"]
+  },
+  {
+    "id": "update_hris",
+    "label": "Update HRIS Record",
+    "description": "Update an employee record in the HRIS system",
+    "icon": "database",
+    "params": ["employeeId", "field", "value"]
+  },
+  {
+    "id": "schedule_meeting",
+    "label": "Schedule Meeting",
+    "description": "Schedule a calendar meeting",
+    "icon": "calendar",
+    "params": ["attendees", "date", "time", "agenda"]
+  },
+  {
+    "id": "run_background_check",
+    "label": "Run Background Check",
+    "description": "Initiate a background verification check",
+    "icon": "shield-check",
+    "params": ["candidateId", "checkLevel"]
+  },
+  {
+    "id": "provision_accounts",
+    "label": "Provision Accounts",
+    "description": "Create user accounts in company systems",
+    "icon": "user-plus",
+    "params": ["employeeId", "systems", "role"]
+  }
+]
